@@ -1,4 +1,4 @@
-*{
+* {
   box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
   padding: 0px;
@@ -6,12 +6,12 @@
   outline: none;
 }
 
-body{
+body {
   background-color: #242424;
   color: #f2f1f1;
 }
 
-header{
+header {
   padding: 8px;
   background-color: #df2525;
   display: flex;
@@ -22,29 +22,29 @@ header{
   margin-bottom: 24px;
 }
 
-header h1{
-font-size: 24px;
+header h1 {
+  font-size: 24px;
 }
 
-header img{
+header img {
   width: 40px;
   height: 40px;
 }
 
-.introduction{
+.introduction {
   max-width: 600px;
   padding: 20px;
-  margin: 0 auto ;
+  margin: 0 auto;
   text-align: center;
 }
 
-.introduction p{
+.introduction p {
   margin-top: 4px;
   color: #bbb;
   text-align: left;
 }
 
-#form{
+#form {
   max-width: 420px;
   padding: 18px;
   margin: 0 auto;
@@ -54,11 +54,11 @@ header img{
   gap: 16px;
 }
 
-#form label{
+#form label {
   align-self: flex-start;
 }
 
-#form input{
+#form input {
   width: 100%;
   border: none;
   border-radius: 8px;
@@ -67,7 +67,7 @@ header img{
   font-size: 15px;
 }
 
-.button-form{
+.button-form {
   background-color: #df2525;
   width: 120px;
   color: #f2f1f1;
@@ -79,14 +79,14 @@ header img{
   transition: all 0.3s;
 }
 
-.container-thumbnails{
+.container-result {
   display: none;
   grid-template: auto / 1fr 1fr;
   padding: 24px;
   gap: 8px;
 }
 
-.card-thumbnail{
+.card-explaining {
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -95,18 +95,47 @@ header img{
   height: 270px;
 }
 
-.card-thumbnail img{
-  width: 90%;
+.container-thumbnails {
+  text-align: center;
 }
 
-.container-buttons-download{
+.cards-thumbnails {
+  max-height: 500px;
+  box-shadow: inset 10px 10px 10px #202020;
+  padding: 40px;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 48px;
 }
 
-.button-download{
+.card-thumbnail{
+  width: 500px;
+}
+
+.card-thumbnail > p{
+  font-size: 18px;
+  padding: 4px;
+  font-weight: 500;
+}
+
+.card-thumb1>img,
+.card-thumb2>img {
+  width: 320px;
+}
+
+.card-thumb3>img,
+.card-thumb4>img {
+  width: 480px;
+}
+
+
+
+
+
+
+/* .button-download{
   background-color: #df2525;
   color: #f2f1f1;
   border: none;
@@ -120,4 +149,4 @@ header img{
 
 .button-form:hover, .button-download:hover{
   background-color: #aa2121;
-}
+} */

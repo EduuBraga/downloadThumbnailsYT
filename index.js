@@ -1,6 +1,14 @@
 const form = document.querySelector('#form')
-const containerThumbnails = document.querySelector('.container-thumbnails')
-const imgThumbnail = document.querySelector('.img-thumbnail')
+const containerResult = document.querySelector('.container-result')
+const cardsThumbnails = document.querySelector('.cards-thumbnails')
+
+const namesSizeThumbnails = ['medium', 'high', 'standard', 'maxres']
+const sizesThumbnails = [
+  '320 x 180',
+  '480 x 360',
+  '640 x 480',
+  '1280 x 720'
+]
 
 const getThumbnailsVideo = async idVideo => {
   const KEYapi = "AIzaSyBNtmsQjdd06IEHyNCTv0A5XRmez7_tIHw"
@@ -29,28 +37,26 @@ const getIdVideo = link => {
   return link.slice(firstCut, lastIndex)
 }
 
-const getUrlThumbnails = thumbnails => {
-  const sizesThumbails = ['default', 'medium', 'high', 'standard', 'maxres']
-  const URLs = []
+const showContainerResult = thumbnails => {
+  containerResult.style = 'display: grid'
 
-  sizesThumbails.forEach(type => {
-    const sizeExists = thumbnails[type] !== undefined
+  namesSizeThumbnails.forEach((nameSize, index) => {
+    const sizeCurrent = sizesThumbnails[index]
+    const cardThumbCurrent = document.querySelector(`.card-thumb${index + 1}`)
+    const URLExists = thumbnails[nameSize] !== undefined
 
-    if(sizeExists){
-      URLs.push({[type]: thumbnails[type].url})
+    if (URLExists) {
+      const URLcurrent = thumbnails[nameSize].url
+
+      cardThumbCurrent.innerHTML = `
+        <p>${sizeCurrent}</p>
+        <img 
+          src="${URLcurrent}" 
+          alt="Thumbnail ${sizeCurrent}"
+        > 
+      `
     }
   })
-
-  return URLs
-}
-
-const showContainerThumbnails = thumbnails => {
-  containerThumbnails.style = 'display: grid'
-
-  const URLS = getUrlThumbnails(thumbnails)
-
-  const urlThumbnailMaxres = thumbnails.maxres.url //1280 x 720
-  imgThumbnail.src = urlThumbnailMaxres
 }
 
 form.addEventListener('submit', async event => {
@@ -61,10 +67,10 @@ form.addEventListener('submit', async event => {
 
   const thumbnails = await getThumbnailsVideo(idVideo)
 
-  if(!thumbnails){
+  if (!thumbnails) {
     console.log('thumbnails não existente')
     return
   }
 
-  showContainerThumbnails(thumbnails)
+  showContainerResult(thumbnails)
 })

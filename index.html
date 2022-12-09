@@ -3,44 +3,52 @@
 
 <head>
   <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Download Thumbnails YouTube</title>
 </head>
 
 <body>
-  <h1>Download Thumbnails YouTube</h1>
+  <header>
+    <h1>Download Thumbnails</h1>
+    <img src="./images/yt-icon-black.png" alt="">
+  </header>
 
   <main>
+    <section class="introduction">
+      <h2>Como funciona?</h2>
+      <p>
+        1. Copie um link(URL) de um
+        <a href="https://www.youtube.com/" target="_blank">vídeo do YoutTube</a>
+        e cole no campo abaixo.
+      </p>
+      <p>2. Espere e baixe a thumb do tamanho que você quiser.</p>
+    </section>
+
     <form id="form">
-      <input type="search" name="search">
-      <button>Buscar</button>
+      <label>
+        Link do vídeo do YouTube
+        <input autofocus placeholder="link do vídeo" type="search" name="search">
+      </label>
+      <button class="button-form">Buscar</button>
     </form>
 
     <section class="container-thumbnails">
-      <img class="img-thumbnail" src="" alt="thumbnail">
+      <div class="card-thumbnail">
+        <img class="img-thumbnail" src="" alt="thumbnail">
+      </div>
 
-      <section>
-        <div>
-          <p>Thumbnail 120 x 90</p>
-          <button>Download</button>
-        </div>
-        <div>
-          <p>Thumbnail 320 x 180</p>
-          <button>Download</button>
-        </div>
-        <div>
-          <p>Thumbnail 480 x 360</p>
-          <button>Download</button>
-        </div>
-        <div>
-          <p>Thumbnail 640 x 480</p>
-          <button>Download</button>
-        </div>
-        <div>
-          <p>Thumbnail 1280 x 720</p>
-          <button>Download</button>
-        </div>
+      <section class="container-buttons-download">
+        <h3>Download Thumbnails:</h3>
+        <button class="button-download">Download 120 x 90</button>
+        <button class="button-download">Download 320 x 180</button>
+        <button class="button-download">Download 480 x 360</button>
+        <button class="button-download">Download 640 x 480</button>
+        <button class="button-download">Download 1280 x 720</button>
       </section>
     </section>
   </main>

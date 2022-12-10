@@ -1,14 +1,9 @@
 const form = document.querySelector('#form')
 const containerResult = document.querySelector('.container-result')
-const cardsThumbnails = document.querySelector('.cards-thumbnails')
+const feedbackError = document.querySelector('.feedback-error')
 
 const namesSizeThumbnails = ['medium', 'high', 'standard', 'maxres']
-const sizesThumbnails = [
-  '320 x 180',
-  '480 x 360',
-  '640 x 480',
-  '1280 x 720'
-]
+const sizesThumbnails = ['320 x 180', '480 x 360', '640 x 480', '1280 x 720']
 
 const getThumbnailsVideo = async idVideo => {
   const KEYapi = "AIzaSyBNtmsQjdd06IEHyNCTv0A5XRmez7_tIHw"
@@ -50,27 +45,45 @@ const showContainerResult = thumbnails => {
 
       cardThumbCurrent.innerHTML = `
         <p>${sizeCurrent}</p>
-        <img 
-          src="${URLcurrent}" 
-          alt="Thumbnail ${sizeCurrent}"
-        > 
+        <img src="${URLcurrent}" alt="Thumbnail ${sizeCurrent}"> 
       `
     }
   })
 }
 
+const showFeedbackError = () => {
+  feedbackError.style = 'display: block'
+  feedbackError.textContent = "URL inválida"
+  form.search.classList.add('border-error')
+  containerResult.style = 'display: none'
+}
+
+const hiddenFeedbackError = () => {
+  const elementError = document.querySelector('.border-error')
+
+  if(elementError){
+    feedbackError.style = 'display: none'
+    feedbackError.textContent = ''
+    form.search.classList.remove('border-error')
+  }
+}
+
 form.addEventListener('submit', async event => {
   event.preventDefault()
-
   const link = event.target.search.value
-  const idVideo = getIdVideo(link)
 
+  const idVideo = getIdVideo(link)
   const thumbnails = await getThumbnailsVideo(idVideo)
 
+  //Remove feedback de erro (caso existente)
+  hiddenFeedbackError()
+
+  //Mostra feedback de erro quando requisição for mal sucedida
   if (!thumbnails) {
-    console.log('thumbnails não existente')
+    showFeedbackError()
     return
   }
 
+  //Mostra resultado da requisição
   showContainerResult(thumbnails)
 })

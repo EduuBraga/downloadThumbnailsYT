@@ -44,6 +44,15 @@ header img {
   text-align: left;
 }
 
+.introduction a{
+  text-decoration-color: #df2525 ;
+  color: #bbb;
+}
+
+.introduction a:hover{
+  color: #df2525;
+}
+
 #form {
   max-width: 420px;
   padding: 18px 18px 50px 18px;
@@ -56,15 +65,28 @@ header img {
 
 #form label {
   align-self: flex-start;
+  position: relative;
 }
 
 #form input {
-  width: 100%;
   border: none;
+  width: 100%;
   border-radius: 8px;
   margin-top: 4px;
   padding: 12px 8px;
   font-size: 15px;
+}
+
+.feedback-error{
+  display: none;
+  position: absolute;
+  bottom: -26px;
+  left: 4px;
+  color: #d3850f;  
+}
+
+.border-error{
+  border: 2px solid #d3850f !important;
 }
 
 .button-form {
@@ -77,6 +99,7 @@ header img {
   font-size: 16px;
   border-radius: 8px;
   transition: all 0.3s;
+  margin-top: 15px;
 }
 
 .container-result {
@@ -143,24 +166,3 @@ header img {
 .card-thumb4>img {
   width: 480px;
 }
-
-
-
-
-
-
-/* .button-download{
-  background-color: #df2525;
-  color: #f2f1f1;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  font-size: 16px;
-  border-radius: 8px;
-  transition: all 0.3s;
-  width: 220px;
-}
-
-.button-form:hover, .button-download:hover{
-  background-color: #aa2121;
-} */

@@ -1,24 +1,27 @@
 const form = document.querySelector('#form')
 const containerResult = document.querySelector('.container-result')
 const feedbackError = document.querySelector('.feedback-error')
+const titleThumbnails = document.querySelector('.title-thumbnails')
 
 const namesSizeThumbnails = ['medium', 'high', 'standard', 'maxres']
 const sizesThumbnails = ['320 x 180', '480 x 360', '640 x 480', '1280 x 720']
 
-const getThumbnailsVideo = async idVideo => {
+const getDataVideo = async idVideo => {
   const KEYapi = "AIzaSyBNtmsQjdd06IEHyNCTv0A5XRmez7_tIHw"
   const URL = `https://www.googleapis.com/youtube/v3/videos?id=${idVideo}&key=${KEYapi}&part=snippet`
 
   try {
     const response = await fetch(URL)
+    const dataVideoParsing = await response.json()
+    const isDataVideoNotFound = dataVideoParsing.items.length === 0
 
-    if (!response.ok) {
+    if (isDataVideoNotFound) {
       throw new Error('video não encontrado')
     }
 
-    const video = await response.json()
+    const dataVideo = dataVideoParsing.items[0].snippet
 
-    return video.items[0].snippet.thumbnails
+    return dataVideo
   } catch (error) {
     console.log(error.message)
   }
@@ -32,8 +35,9 @@ const getIdVideo = link => {
   return link.slice(firstCut, lastIndex)
 }
 
-const showContainerResult = thumbnails => {
+const showContainerResult = (thumbnails, title) => {
   containerResult.style = 'display: grid'
+  titleThumbnails.textContent = `Thumbnails do vídeo: ${title}`
 
   namesSizeThumbnails.forEach((nameSize, index) => {
     const sizeCurrent = sizesThumbnails[index]
@@ -61,7 +65,7 @@ const showFeedbackError = () => {
 const hiddenFeedbackError = () => {
   const elementError = document.querySelector('.border-error')
 
-  if(elementError){
+  if (elementError) {
     feedbackError.style = 'display: none'
     feedbackError.textContent = ''
     form.search.classList.remove('border-error')
@@ -70,20 +74,20 @@ const hiddenFeedbackError = () => {
 
 form.addEventListener('submit', async event => {
   event.preventDefault()
-  const link = event.target.search.value
+  const URLInput = event.target.search.value
 
-  const idVideo = getIdVideo(link)
-  const thumbnails = await getThumbnailsVideo(idVideo)
+  const idVideo = getIdVideo(URLInput)
+  const dataVideo = await getDataVideo(idVideo)
 
   //Remove feedback de erro (caso existente)
   hiddenFeedbackError()
 
   //Mostra feedback de erro quando requisição for mal sucedida
-  if (!thumbnails) {
+  if (!dataVideo) {
     showFeedbackError()
     return
   }
 
   //Mostra resultado da requisição
-  showContainerResult(thumbnails)
+  showContainerResult(dataVideo.thumbnails, dataVideo.title)
 })

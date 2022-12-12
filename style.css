@@ -44,12 +44,12 @@ header img {
   text-align: left;
 }
 
-.introduction a{
-  text-decoration-color: #df2525 ;
+.introduction a {
+  text-decoration-color: #df2525;
   color: #bbb;
 }
 
-.introduction a:hover{
+.introduction a:hover {
   color: #df2525;
 }
 
@@ -77,15 +77,15 @@ header img {
   font-size: 15px;
 }
 
-.feedback-error{
+.feedback-error {
   display: none;
   position: absolute;
   bottom: -26px;
   left: 4px;
-  color: #d3850f;  
+  color: #d3850f;
 }
 
-.border-error{
+.border-error {
   border: 2px solid #d3850f !important;
 }
 
@@ -109,7 +109,7 @@ header img {
   gap: 8px;
 }
 
-.card-explaining{
+.card-explaining {
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -122,7 +122,7 @@ header img {
   margin-top: 16px;
 }
 
-.card-explaining ol{
+.card-explaining ol {
   list-style-position: inside;
   align-self: flex-start;
 }
@@ -130,6 +130,10 @@ header img {
 .card-explaining li {
   margin-top: 4px;
   color: #bbb;
+}
+
+.container-thumbnails h2 {
+  margin-bottom: 8px;
 }
 
 .container-thumbnails {
@@ -147,11 +151,11 @@ header img {
   gap: 48px;
 }
 
-.card-thumbnail{
+.card-thumbnail {
   width: 500px;
 }
 
-.card-thumbnail > p{
+.card-thumbnail>p {
   font-size: 18px;
   padding: 4px;
   font-weight: 500;
@@ -165,4 +169,24 @@ header img {
 .card-thumb3>img,
 .card-thumb4>img {
   width: 480px;
+}
+
+
+@media screen and (max-width: 820px) {
+  .container-result {
+    grid-template: auto auto / auto;
+    gap: 50px;
+  }
+
+  .cards-thumbnails,
+  .card-thumbnail,
+  .card-thumbnail img{
+    width: 100%;
+  }
+
+  .card-thumbnail>p {
+    font-size: 18px;
+    padding: 4px;
+    font-weight: 500;
+  }
 }
